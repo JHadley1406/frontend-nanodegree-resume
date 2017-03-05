@@ -6,8 +6,6 @@ Don't worry, you'll learn what's going on in this file throughout the course. Yo
 
 Cameron Pittman
 */
-
-
 /*
 These are HTML strings. As part of the course, you'll be using JavaScript functions
 replace the %data% placeholder text you see in them.
@@ -65,8 +63,8 @@ var HTMLlistBase = "<ul>%list%</ul>";
 var HTMLlistItem = "<li>%data%</li>";
 
 
-function dataReplacer(object, string){
-  return object.replace("%data%", string);
+function dataReplacer(object, string) {
+    return object.replace("%data%", string);
 }
 
 
@@ -75,11 +73,11 @@ function dataReplacer(object, string){
 The Internationalize Names challenge found in the lesson Flow Control from JavaScript Basics requires you to create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
 */
 $(document).ready(function() {
-  $('button').click(function() {
-    var $name = $('#name');
-    var iName = inName($name.text()) || function(){};
-    $name.html(iName);
-  });
+    $('button').click(function() {
+        var $name = $('#name');
+        var iName = inName($name.text()) || function() {};
+        $name.html(iName);
+    });
 });
 
 /*
@@ -87,18 +85,16 @@ The next few lines about clicks are for the Collecting Click Locations quiz in t
 */
 var clickLocations = [];
 
-function logClicks(x,y) {
-  clickLocations.push(
-    {
-      x: x,
-      y: y
-    }
-  );
-  console.log('x location: ' + x + '; y location: ' + y);
+function logClicks(x, y) {
+    clickLocations.push({
+        x: x,
+        y: y
+    });
+    console.log('x location: ' + x + '; y location: ' + y);
 }
 
 $(document).click(function(loc) {
-  // your code goes here!
+    // your code goes here!
 });
 
 
@@ -108,7 +104,7 @@ This is the fun part. Here's where we generate the custom Google Map for the web
 See the documentation below for more details.
 https://developers.google.com/maps/documentation/javascript/reference
 */
-var map;    // declares a global map variable
+var map; // declares a global map variable
 var locations = []; // declare locations globally to prevent clearing on re-initialization
 var places = []; // declare places globally to prevent clearing on re-initialization
 /*
@@ -119,112 +115,112 @@ function initializeMap() {
 
 
 
-  var mapOptions = {
-      disableDefaultUI: true
-  };
+    var mapOptions = {
+        disableDefaultUI: true
+    };
 
-  /*
-  For the map to be displayed, the googleMap var must be
-  appended to #mapDiv in resumeBuilder.js.
-  */
-  map = new google.maps.Map(document.querySelector('#map'), mapOptions);
+    /*
+    For the map to be displayed, the googleMap var must be
+    appended to #mapDiv in resumeBuilder.js.
+    */
+    map = new google.maps.Map(document.querySelector('#map'), mapOptions);
 
-  function addLocation(location){
-        if($.inArray(location, locations) === -1){
+    function addLocation(location) {
+        if ($.inArray(location, locations) === -1) {
             locations.push(location);
         }
-  }
-
-  /*
-  locationFinder() returns an array of every location string from the JSONs
-  written for bio, education, and work.
-  */
-  function locationFinder() {
-
-    addLocation(bio.contacts.location);
-
-    education.schools.forEach(function(school){
-      addLocation(school.location);
-    });
-
-    work.jobs.forEach(function(job){
-      addLocation(job.location);
-    });
-
-    return locations;
-  }
-
-
-  function createMapMarker(placeData) {
-    console.log("creating map marker");
-    // The next lines save location data from the search result object to local variables
-    var lat = placeData.geometry.location.lat();  // latitude from the place service
-    var lon = placeData.geometry.location.lng();  // longitude from the place service
-    var name = placeData.formatted_address;   // name of the place from the place service
-    var bounds = window.mapBounds;            // current boundaries of the map window
-    console.log(name);
-
-    var marker = new google.maps.Marker({
-      map: map,
-      position: placeData.geometry.location,
-      title: name
-    });
-
-    var infoWindow = new google.maps.InfoWindow({
-      content: name
-    });
-
-    google.maps.event.addListener(marker, 'click', function() {
-      infoWindow.open(map, marker);
-    });
-
-
-    bounds.extend(new google.maps.LatLng(lat, lon));
-    // fit the map to the new marker
-    map.fitBounds(bounds);
-    // center the map
-    map.setCenter(bounds.getCenter());
-  }
-
-
-  function callback(results, status) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-        if ($.inArray(results[0], places) === -1){
-            places.push(results[0]);
-        }
-        console.log("places length = " + places.length + " locations length = " + locations.length);
-        if(places.length === locations.length){     // Was getting a weird race condition
-            places.forEach(function(place){         // seeing if this will fix it
-                createMapMarker(place);
-            });
-        }
-
     }
-  }
+
+    /*
+    locationFinder() returns an array of every location string from the JSONs
+    written for bio, education, and work.
+    */
+    function locationFinder() {
+
+        addLocation(bio.contacts.location);
+
+        education.schools.forEach(function(school) {
+            addLocation(school.location);
+        });
+
+        work.jobs.forEach(function(job) {
+            addLocation(job.location);
+        });
+
+        return locations;
+    }
 
 
-  function pinPoster(locations) {
+    function createMapMarker(placeData) {
+        console.log("creating map marker");
+        // The next lines save location data from the search result object to local variables
+        var lat = placeData.geometry.location.lat(); // latitude from the place service
+        var lon = placeData.geometry.location.lng(); // longitude from the place service
+        var name = placeData.formatted_address; // name of the place from the place service
+        var bounds = window.mapBounds; // current boundaries of the map window
+        console.log(name);
+
+        var marker = new google.maps.Marker({
+            map: map,
+            position: placeData.geometry.location,
+            title: name
+        });
+
+        var infoWindow = new google.maps.InfoWindow({
+            content: name
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infoWindow.open(map, marker);
+        });
 
 
-    var service = new google.maps.places.PlacesService(map);
-
-    locations.forEach(function(place){
-
-        var request = {
-            query: place
-        };
-
-        service.textSearch(request, callback);
-    });
-  }
-
-  window.mapBounds = new google.maps.LatLngBounds();
+        bounds.extend(new google.maps.LatLng(lat, lon));
+        // fit the map to the new marker
+        map.fitBounds(bounds);
+        // center the map
+        map.setCenter(bounds.getCenter());
+    }
 
 
-  locations = locationFinder();
+    function callback(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+            if ($.inArray(results[0], places) === -1) {
+                places.push(results[0]);
+            }
+            console.log("places length = " + places.length + " locations length = " + locations.length);
+            if (places.length === locations.length) { // Was getting a weird race condition
+                places.forEach(function(place) { // seeing if this will fix it
+                    createMapMarker(place);
+                });
+            }
+
+        }
+    }
 
 
-  pinPoster(locations);
+    function pinPoster(locations) {
+
+
+        var service = new google.maps.places.PlacesService(map);
+
+        locations.forEach(function(place) {
+
+            var request = {
+                query: place
+            };
+
+            service.textSearch(request, callback);
+        });
+    }
+
+    window.mapBounds = new google.maps.LatLngBounds();
+
+
+    locations = locationFinder();
+
+
+    pinPoster(locations);
 
 }
 
@@ -232,5 +228,5 @@ window.addEventListener('load', initializeMap);
 
 
 window.addEventListener('resize', function(e) {
-  map.fitBounds(mapBounds);
+    map.fitBounds(mapBounds);
 });
