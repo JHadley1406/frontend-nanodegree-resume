@@ -18,15 +18,24 @@ h6 {
   overflow: auto;
 }
 
-.education-entry,
+.education-entry {
+  margin: 0 5%;
+}
+
 .work-entry,
 .project-entry {
   padding: 0 5%;
 }
 
+.education-entry,
+.project-block,
+.work-block {
+  padding: 0 2%;
+}
+
 h1 {
   font-size: 40px;
-  color: #f5a623;
+  color: #000080;
   line-height: 48px;
   display: inline;
 }
@@ -100,8 +109,16 @@ a {
 }
 
 #skills-h3 {
-  color: #f5ae23;
+  color: #000080;
   display: none;
+}
+
+.dark-blue {
+  background-color: #000080;
+}
+
+.dark-blue-text {
+  color: #000080;
 }
 
 .orange {
@@ -117,8 +134,12 @@ a {
   color: #fff;
 }
 
-.gray {
+.lightgray {
   background-color: #f3f3f3;
+}
+
+.gray {
+  background-color: #f0f0f0;
   padding-bottom: 10px;
   clear: both;
 }
@@ -129,7 +150,10 @@ a {
 
 /* TODO: Replace with image later */
 #header {
-  background-color: #484848;
+  background-image: url("../images/sutro_tower_narrow.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .flex-box {

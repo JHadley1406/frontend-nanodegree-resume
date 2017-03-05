@@ -24,19 +24,20 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
 
   <!-- Load the page styles. -->
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--<link href="css/bootstrap-theme.min.css" rel="stylesheet">
 
 
 
   <!--
   Uncomment the <script> tag below when you're ready to add an interactive Google Map to your resume!
   -->
-<!-- <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script> -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEjACA8kM0o8y1klqOgI0xX4w0Nn4pTlw&callback=initializeMap&libraries=places"></script>
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
   <div id="main">
-    Hello world!   <!-- You'll be deleting this line in the course -->
 
     <!--
     Everything from here to the <script> tag below is the skeleton of your
@@ -44,23 +45,23 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     resume below. You can pretty easily figure out what each section will
     display by looking at the id or at what's written between the <h2> tags.
     -->
-    <div id="header" class="center-content clear-fix">
+    <div id="header" class="center-content clear-fix container-fluid">
       <ul id="topContacts" class="flex-box"></ul>
     </div>
     <div style="clear: both;"></div>
-    <div id="workExperience" class="gray">
+    <div id="workExperience" class="gray container-fluid">
       <h2>Work Experience</h2>
     </div>
-    <div id="projects">
+    <div id="projects" class="lightgray container-fluid">
       <h2>Projects</h2>
     </div>
-    <div id="education" class="gray">
+    <div id="education" class="gray container-fluid">
       <h2>Education</h2>
     </div>
-    <div id="mapDiv">
+    <div id="mapDiv" class="lightgray container-fluid">
       <h2>Where I've Lived and Worked</h2>
     </div>
-    <div id="lets-connect" class="dark-gray">
+    <div id="lets-connect" class="dark-gray container-fluid">
       <h2 class="orange center-text">Let's Connect</h2>
         <ul id="footerContacts" class="flex-box">
       </ul>
@@ -87,6 +88,7 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   you can't accomplish with vanilla (regular) JavaScript.
   -->
   <script src="js/jQuery.js"></script>
+  <!--<script src="js/bootstrap.min.js"></script>
 
   <!-- More on helper.js in the class -->
   <script src="js/helper.js"></script>
