@@ -3,7 +3,7 @@ This is empty on purpose! Your code to build the resume will go here.
  */
 bioPic = "images/head_shot.jpg";
 emteePic = "images/mileage_tracker_icon_300x300.png";
-spotifyStreamerPic = "images/fry.jpg";
+spotifyStreamerPic = "images/spotify_streamer_code.png";
 surveyPic = "images/survey.png";
 /*
     bio {
