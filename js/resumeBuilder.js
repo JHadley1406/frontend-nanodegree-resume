@@ -37,7 +37,7 @@ bio = {
     contacts: contact,
     welcomeMessage: 'Welcome to my online resume',
     skills: ["Python", "Django", "JavaScript", "MySQL", "REST", "CSS", "HTML", "Java", "Android"],
-    biopic: "",
+    biopic: bioPic,
     display: function() {
         $('#topContacts').before(
                 dataReplacer(HTMLheaderName, bio.name),
@@ -50,7 +50,7 @@ bio = {
                 dataReplacer(HTMLlocation, bio.contacts.location)
             );
 
-        $('#header').append(dataReplacer(HTMLbioPic, bioPic),
+        $('#header').append(dataReplacer(HTMLbioPic, bio.biopic),
             dataReplacer(HTMLwelcomeMsg, bio.welcomeMessage),
             HTMLskillsStart
         );
@@ -333,7 +333,7 @@ survey = {
     dates: "2016",
     description: "This site is an example survey site implemented in Django with a Bootstrap and JQuery front end.  " +
         "It supports user account created and login, and allowes users to create and take surveys made up of multiple question types.",
-    images: [surveyPic]
+    images: [surveyPic,]
 };
 
 projects = {
@@ -349,9 +349,13 @@ projects = {
             projectBlock.append(
                 dataReplacer(HTMLprojectTitle, project.title),
                 dataReplacer(HTMLprojectDates, project.dates),
-                dataReplacer(HTMLprojectDescription, project.description),
-                dataReplacer(HTMLprojectImage, project.images)
+                dataReplacer(HTMLprojectDescription, project.description)
             );
+            project.images.forEach(function(image){
+                projectBlock.append(
+                    dataReplacer(HTMLprojectImage, image)
+                );
+            });
         });
     }
 };
