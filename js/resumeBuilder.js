@@ -54,6 +54,12 @@ bio = {
             dataReplacer(HTMLwelcomeMsg, bio.welcomeMessage),
             HTMLskillsStart
         );
+        $('#footerContacts').append(
+            dataReplacer(HTMLmobile, bio.contacts.mobile),
+            dataReplacer(HTMLemail, bio.contacts.email),
+            dataReplacer(HTMLgithub, bio.contacts.github),
+            dataReplacer(HTMLlocation, bio.contacts.location)
+        );
 
         this.skills.forEach(function(skill) {
             $('#skills').append(dataReplacer(HTMLskills, skill));
